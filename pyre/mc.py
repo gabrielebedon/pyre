@@ -8,13 +8,13 @@ import scipy.optimize as opt
 import scipy.special as spec
 import matplotlib.pyplot as plt
 
-from model import *
-from correlation import *
-from distributions import *
-from cholesky import *
-from limitstate import *
-from stepsize import *
-from form import *
+from .model import *
+from .correlation import *
+from .distributions import *
+from .cholesky import *
+from .limitstate import *
+from .stepsize import *
+from .form import *
 
 class MonteCarlo(object):
   """Monte Carlo Simulation
@@ -111,7 +111,7 @@ class MonteCarlo(object):
     if self.options.getRandomGenerator() == 0:
       self.u = np.dot(self.point,[np.ones(self.block_size)])+np.dot(self.cholesky_covariance,np.random.randn(self.nrv, self.block_size))
     elif self.options.getRandomGenerator() == 1:
-      print 'Error: function not yet implemented'
+      print('Error: function not yet implemented')
 
   def computeTransformation(self):
     """Compute transformation from u to x space
@@ -171,7 +171,7 @@ class MonteCarlo(object):
     if np.floor( self.k * self.options.getSamples()**(-1)*20) > self.done:
       self.done = np.floor( self.k * self.options.getSamples()**(-1)*20)
       if self.options.printOutput():
-          print self.done*5,'% complete'
+          print(self.done*5,'% complete')
 
   def computeFailureProbability(self):
     """Compute probability of failure"""
@@ -345,18 +345,18 @@ class CrudeMonteCarlo(MonteCarlo):
 
   def showResults(self):
     """Show results and plots"""
-    print ''
-    print '=================================================='
-    print ''
-    print ' RESULTS FROM RUNNING CRUDE MONTE CARLO SIMULATION'
-    print ''
-    print ' Reliability index beta:       ',self.beta
-    print ' Failure probability:          ',self.Pf
-    print ' Coefficient of variation of Pf',self.cov_q_bar[self.k-1]
-    print ' Number of simulations:        ',self.k
-    print ''
-    print '=================================================='
-    print ''
+    print('')
+    print('==================================================')
+    print('')
+    print(' RESULTS FROM RUNNING CRUDE MONTE CARLO SIMULATION')
+    print('')
+    print(' Reliability index beta:       ',self.beta)
+    print(' Failure probability:          ',self.Pf)
+    print(' Coefficient of variation of Pf',self.cov_q_bar[self.k-1])
+    print(' Number of simulations:        ',self.k)
+    print('')
+    print('==================================================')
+    print('')
 
     npts = 200
     x = np.arange(0, self.k, self.block_size, dtype=int)
@@ -483,7 +483,7 @@ class DistributionAnalysis(MonteCarlo):
 
   def coumputeDataUpdate(self):
     """Update data"""
-    indx = range((self.k-self.block_size),self.k)
+    indx = list(range((self.k-self.block_size),self.k))
     self.all_X[:,indx] = self.x
     self.all_G[:,indx] = self.G
 
@@ -495,16 +495,16 @@ class DistributionAnalysis(MonteCarlo):
 
   def showResults(self):
     """Show results and plots"""
-    print ''
-    print '=================================================='
-    print ''
-    print ' RESULTS FROM RUNNING DISTRIBUTION ANALYSIS'
-    print ''
-    print ' Number of simulations:        ',self.k
-    print ' Approximated number of bins   ',self.bins
-    print ''
-    print '=================================================='
-    print ''
+    print('')
+    print('==================================================')
+    print('')
+    print(' RESULTS FROM RUNNING DISTRIBUTION ANALYSIS')
+    print('')
+    print(' Number of simulations:        ',self.k)
+    print(' Approximated number of bins   ',self.bins)
+    print('')
+    print('==================================================')
+    print('')
 
 
     npts = 200

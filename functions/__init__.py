@@ -1,2 +1,2 @@
 # Inputparameter
-from function import *
+from .function import *

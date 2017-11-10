@@ -6,9 +6,6 @@ import os, sys
 from types import FunctionType
 StringType = bytes
 
-sys.path.append (os.path.join(os.getcwd(), "functions") )
-from functions.function import *
-
 def evaluateLimitState(x,stochastic_model,analysis_options,limit_state,modus=None):
   """Evaluate the limit state"""
 
@@ -98,13 +95,12 @@ def evaluateLimitState(x,stochastic_model,analysis_options,limit_state,modus=Non
 def computeLimitStateFunction(x,variable_names,expression):
   """Compute the limit state function"""
   nrv = np.shape(x)[0]
-
   if type(expression) == StringType:
     # string expression, for backward compatibility
     for i in range(nrv):
       globals()[variable_names[i]] = x[i:i+1]
     G = eval(expression)[0]
-  elif type(expression) == FunctionType:
+  else:
     # function expression, recommended to use
     inpdict = dict()
     for i in range(nrv):

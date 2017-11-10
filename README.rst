@@ -2,10 +2,10 @@
 Structural Reliability Analysis with Python
 *******************************************
 
-:Date: September 2013
-:Authors: Jürgen Hackl
+:Date: November 2017
+:Authors: Jürgen Hackl, Gabriele Bedon
 :Contact: hackl.j@gmx.at
-:Web site: http://github.com/hackl/pyre
+:Web site: https://github.com/gabrielebedon/pyre
 :Documentation: http://hackl.github.io/pyre/
 :Copyright: This document has been placed in the public domain.
 :License: PyRe is released under the GNU General Public Licence.
@@ -14,6 +14,9 @@ Structural Reliability Analysis with Python
 
 Note
 ----
+
+This version is created on the basis of the original Pyre 5.0.2 code and modified
+to work with Python 3.x.
 
    If you have any problems, found bugs in the code or have feature request
    comments or questions, please feel free to send a mail to `Jürgen Hackl`_.
